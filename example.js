@@ -1,6 +1,6 @@
 'use strict'
 
-var Scraper = require('./lib/GoogleScraper.js')
+var Scraper = require('./lib/google-images-scraper')
   , fs = require('fs')
   , request = require('request');
 
@@ -9,14 +9,14 @@ var scraper = new Scraper({
 	rlimit: 10	// 10 p second
 });
 
-scraper.list(50).then(function (res) {
-	console.log('first 50 results', res);
-	
+scraper.list(10).then(function (res) {
+	console.log('first 10 results', res);
+
 	res.forEach(function(r) {
 		var file = r.split('/');
 		var r = request({
 			url: r,
 			'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
-		}).pipe(fs.createWriteStream('./tmp/' + file[file.length-1]));
+		}).pipe(fs.createWriteStream(file[file.length-1]));
 	});
 });
