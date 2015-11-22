@@ -58,7 +58,7 @@ scraper.list(10).then(function (res) {
 });
 ```
 
-#Options
+# Options
 Options that can be passed to google-images-scraper:
 
 ```js
