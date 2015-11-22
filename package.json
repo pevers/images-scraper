@@ -1,0 +1,31 @@
+{
+  "name": "google-images-scraper",
+  "version": "1.0.0",
+  "description": "Simple and fast scraper for Google images using CasperJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pevers/google-images-scraper.git"
+  },
+  "keywords": [
+    "scraper",
+    "google",
+    "images"
+  ],
+  "author": "Peter Evers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pevers/google-images-scraper/issues"
+  },
+  "homepage": "https://github.com/pevers/google-images-scraper#readme",
+  "dependencies": {
+    "bluebird": "^3.0.5",
+    "cheerio": "^0.19.0",
+    "limiter": "^1.1.0",
+    "nightmare": "^2.0.7",
+    "request": "^2.67.0"
+  }
+}
