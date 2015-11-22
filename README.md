@@ -1,5 +1,5 @@
 # google-images-scraper
-Simple and fast scraper for Google images using Nightmare. A rate limiter is implemented and can be used to prevent bans.
+Demonstration on using Nightmare as a headless browser to scraper Google images. A rate limiter is implemented and can be used to prevent bans.
 
 # Installation
 ```npm install google-images-scraper```
