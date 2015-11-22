@@ -2,13 +2,13 @@
 Demonstration on using Nightmare as a headless browser to scraper Google images. A rate limiter is implemented and can be used to prevent bans.
 
 # Installation
-```npm install google-images-scraper```
+Clone the repo and the source can be found in ./lib/google-images.scraper.js.
 
 # Example
 Give me the first 10 images of Banana's
 
 ```js
-var Scraper = require('./google-images-scraper');
+var Scraper = require('./lib/google-images-scraper');
 
 var scraper = new Scraper({
 	keyword: 'banana',
@@ -39,7 +39,7 @@ Will output:
 Another example to use the request and fs module to write the image to output:
 
 ```js
-var Scraper = require('./google-images-scraper')
+var Scraper = require('./lib/google-images-scraper')
   , fs = require('fs')
   , request = require('request');
 
