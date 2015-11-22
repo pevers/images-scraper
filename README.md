@@ -1,8 +1,9 @@
 # google-images-scraper
-Demonstration on using Nightmare as a headless browser to scraper Google images. A rate limiter is implemented and can be used to prevent bans.
+This a simple way to scrape Google images using Nightmare and not be dependend on the Google Ajaxpi. The headless browser will just behave like a normal person, scroll and click. A rate limiter is implemented and can be used to prevent bans.
 
 # Installation
-Clone the repo and the source can be found in ./lib/google-images.scraper.js.
+```npm install google-images-scraper```
+
 
 # Example
 Give me the first 10 images of Banana's
