@@ -66,6 +66,9 @@ Options that can be passed to google-images-scraper:
 var options = {
 	keyword: 'keyword' // required,
 	rlimit: '10',	// number of requests to Google p second (can be 0 for unlimited)
+	nightmare: {
+		// all the options for Nightmare, (show: true for example)
+	},
 	userAgent: 'G.I. Joe'	// the user agent for each request to Google
 }
 ```
