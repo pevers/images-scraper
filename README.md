@@ -9,7 +9,7 @@ This a simple way to scrape Google images using Nightmare and not be dependend o
 Give me the first 10 images of Banana's
 
 ```js
-var Scraper = require('./lib/google-images-scraper');
+var Scraper = require('google-images-scraper');
 
 var scraper = new Scraper({
 	keyword: 'banana',
@@ -40,7 +40,7 @@ Will output:
 Another example to use the request and fs module to write the image to output:
 
 ```js
-var Scraper = require('./lib/google-images-scraper')
+var Scraper = require('google-images-scraper')
   , fs = require('fs')
   , request = require('request');
 
