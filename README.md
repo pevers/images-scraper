@@ -45,8 +45,7 @@ var Scraper = require('google-images-scraper')
   , request = require('request');
 
 var scraper = new Scraper({
-	keyword: 'banana',
-	rlimit: 10	// 10 p second
+	keyword: 'banana'
 });
 
 scraper.list(10).then(function (res) {
@@ -65,7 +64,7 @@ Options that can be passed to google-images-scraper:
 ```js
 var options = {
 	keyword: 'keyword' // required,
-	rlimit: '10',	// number of requests to Google p second (can be 0 for unlimited)
+	rlimit: '10',	// number of requests to Google p second
 	nightmare: {
 		// all the options for Nightmare, (show: true for example)
 	},

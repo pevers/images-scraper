@@ -9,6 +9,6 @@ var scraper = new Scraper({
 	}
 });
 
-scraper.list(10).then(function (res) {
+scraper.list(300).then(function (res) {
 	console.log(res);
 });
