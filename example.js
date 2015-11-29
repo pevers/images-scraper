@@ -3,12 +3,14 @@
 var Scraper = require ('./lib/google-images-scraper');
 
 var scraper = new Scraper({
-	keyword: 'coca cola',
+	keyword: 'banana',
 	nightmare: {
 		show: true
 	}
 });
 
-scraper.list(300).then(function (res) {
+scraper.list().then(function (res) {
 	console.log(res);
+}).catch(function(err) {
+	console.log('err', err);
 });

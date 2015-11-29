@@ -64,7 +64,8 @@ Options that can be passed to google-images-scraper:
 ```js
 var options = {
 	keyword: 'keyword' // required,
-	rlimit: '10',	// number of requests to Google p second
+	rlimit: '10',	// number of requests to Google p second, default: unlimited
+	timeout: 5000,	// timeout when things go wrong, default: 5000
 	nightmare: {
 		// all the options for Nightmare, (show: true for example)
 	},
