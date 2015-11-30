@@ -1,6 +1,6 @@
 {
   "name": "google-images-scraper",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Simple and fast scraper for Google images using Nightmare",
   "main": "index.js",
   "scripts": {

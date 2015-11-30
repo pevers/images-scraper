@@ -9,7 +9,7 @@ var scraper = new Scraper({
 	}
 });
 
-scraper.list().then(function (res) {
+scraper.list(10).then(function (res) {
 	console.log(res);
 }).catch(function(err) {
 	console.log('err', err);
