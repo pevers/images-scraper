@@ -1,5 +1,5 @@
 # images-scraper
-This a simple way to scrape Google images using Nightmare and not be dependend on the Google Ajaxpi. The headless browser will just behave like a normal person, scroll and click. A rate limiter is implemented and can be used to prevent bans.
+This a simple way to scrape Google/Bing images using Nightmare and not be dependent on any API. The headless browser will just behave like a normal person, scroll and click. A rate limiter is implemented and can be used to prevent bans. The Bing scraper doesn't need a headless browser and operates therefore a lot faster.
 
 # Installation
 ```npm install images-scraper```
@@ -48,8 +48,7 @@ var Scraper = require ('images-scraper')
 
 bing.list({
 	keyword: 'banana',
-	num: 10,
-	detail: true
+	num: 10
 })
 .then(function (res) {
 	console.log('first 10 results from bing', res);
@@ -66,7 +65,6 @@ var options = {
 	// general
 	keyword: 'keyword',		// required,
 	userAgent: 'G.I. Joe',	// the user agent for each request to Google (default: Chrome)
-	detail: true,			// display extra details, such as image size, thumbnail etc. (default: false)
 
 	// google specific
 	rlimit: '10',			// number of requests to Google p second, default: unlimited
