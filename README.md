@@ -8,7 +8,7 @@ This a simple way to scrape Google images using Nightmare and not be dependend o
 Give me the first 10 images of Banana's from Google (using headless browser)
 
 ```js
-var Scraper = require ('./index')
+var Scraper = require ('images-scraper')
   , google = new Scraper.Google();
 
 google.list({
@@ -42,7 +42,7 @@ Will output:
 ```
 
 # Example Bing (very fast)
-var Scraper = require ('./index')
+var Scraper = require ('images-scraper')
   , bing = new Scraper.Bing();
 
 ```js
