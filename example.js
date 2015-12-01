@@ -14,7 +14,7 @@ google.list({
 	}
 })
 .then(function (res) {
-	console.log('first 10 results from google', res.length);
+	console.log('first 10 results from google', res);
 }).catch(function(err) {
 	console.log('err', err);
 });
