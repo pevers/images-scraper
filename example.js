@@ -5,19 +5,19 @@ var Scraper = require ('./index')
   , bing = new Scraper.Bing();
 
 //will take some time
-google.list({
-	keyword: 'banana',
-	num: 10,
-	detail: true,
-	nightmare: {
-		show: true
-	}
-})
-.then(function (res) {
-	console.log('first 10 results from google', res);
-}).catch(function(err) {
-	console.log('err', err);
-});
+// google.list({
+// 	keyword: 'banana',
+// 	num: 10,
+// 	detail: true,
+// 	nightmare: {
+// 		show: true
+// 	}
+// })
+// .then(function (res) {
+// 	console.log('first 10 results from google', res);
+// }).catch(function(err) {
+// 	console.log('err', err);
+// });
 
 bing.list({
 	keyword: 'banana',
