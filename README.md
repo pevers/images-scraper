@@ -14,6 +14,7 @@ var Scraper = require ('images-scraper')
 google.list({
 	keyword: 'banana',
 	num: 10,
+	detail: true,
 	nightmare: {
 		show: true
 	}
@@ -48,7 +49,8 @@ var Scraper = require ('images-scraper')
 
 bing.list({
 	keyword: 'banana',
-	num: 10
+	num: 10,
+	detail: true
 })
 .then(function (res) {
 	console.log('first 10 results from bing', res);
@@ -65,6 +67,7 @@ var options = {
 	// general
 	keyword: 'keyword',		// required,
 	userAgent: 'G.I. Joe',	// the user agent for each request to Google (default: Chrome)
+	detail: false,			// scrape details aswell, size, format etc. (default: false)
 
 	// google specific
 	rlimit: '10',			// number of requests to Google p second, default: unlimited
