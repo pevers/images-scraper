@@ -42,10 +42,10 @@ Will output:
 ```
 
 # Example Bing (very fast)
+```js
 var Scraper = require ('images-scraper')
   , bing = new Scraper.Bing();
 
-```js
 bing.list({
 	keyword: 'banana',
 	num: 10,
