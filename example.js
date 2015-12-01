@@ -1,16 +1,31 @@
 'use strict'
 
-var Scraper = require ('./lib/google-images-scraper');
+var Scraper = require ('./index')
+  , google = new Scraper.Google()
+  , bing = new Scraper.Bing();
 
-var scraper = new Scraper({
+//will take some time
+google.list({
 	keyword: 'banana',
+	num: 10,
+	detail: true,
 	nightmare: {
 		show: true
 	}
-});
-
-scraper.list(10).then(function (res) {
-	console.log(res);
+})
+.then(function (res) {
+	console.log('first 10 results from google', res);
 }).catch(function(err) {
 	console.log('err', err);
 });
+
+bing.list({
+	keyword: 'banana',
+	num: 10,
+	detail: true
+})
+.then(function (res) {
+	console.log('first 10 results from bing', res);
+}).catch(function(err) {
+	console.log('err',err);
+})

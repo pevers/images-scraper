@@ -2,22 +2,26 @@
 This a simple way to scrape Google images using Nightmare and not be dependend on the Google Ajaxpi. The headless browser will just behave like a normal person, scroll and click. A rate limiter is implemented and can be used to prevent bans.
 
 # Installation
-```npm install google-images-scraper```
+```npm install images-scraper```
 
-
-# Example
-Give me the first 10 images of Banana's
+# Example Google
+Give me the first 10 images of Banana's from Google (using headless browser)
 
 ```js
-var Scraper = require('google-images-scraper');
+var Scraper = require ('./index')
+  , google = new Scraper.Google()
 
-var scraper = new Scraper({
+google.list({
 	keyword: 'banana',
-	rlimit: 10	// 10 p second
-});
-
-scraper.list(10).then(function (res) {
-	console.log(res);
+	num: 10,
+	nightmare: {
+		show: true
+	}
+})
+.then(function (res) {
+	console.log('first 10 results from google', res);
+}).catch(function(err) {
+	console.log('err', err);
 });
 ```
 
@@ -37,39 +41,36 @@ Will output:
 
 ```
 
-Another example to use the request and fs module to write the image to output:
-
+# Example Bing (very fast)
 ```js
-var Scraper = require('google-images-scraper')
-  , fs = require('fs')
-  , request = require('request');
-
-var scraper = new Scraper({
-	keyword: 'banana'
-});
-
-scraper.list(10).then(function (res) {
-	console.log('first 10 results', res);
-
-	res.forEach(function(r) {
-		var file = r.split('/');
-		var r = request(r).pipe(fs.createWriteStream(file[file.length-1]));
-	});
-});
+bing.list({
+	keyword: 'banana',
+	num: 10,
+	detail: true
+})
+.then(function (res) {
+	console.log('first 10 results from bing', res);
+}).catch(function(err) {
+	console.log('err',err);
+})
 ```
 
 # Options
-Options that can be passed to google-images-scraper:
+Options that can be passed to each scraper:
 
 ```js
 var options = {
-	keyword: 'keyword' // required,
-	rlimit: '10',	// number of requests to Google p second, default: unlimited
-	timeout: 5000,	// timeout when things go wrong, default: 5000
+	// general
+	keyword: 'keyword',		// required,
+	userAgent: 'G.I. Joe',	// the user agent for each request to Google (default: Chrome)
+	detail: true,			// display extra details, such as image size, thumbnail etc. (default: false)
+
+	// google specific
+	rlimit: '10',			// number of requests to Google p second, default: unlimited
+	timeout: 10000,			// timeout when things go wrong, default: 10000
 	nightmare: {
-		// all the options for Nightmare, (show: true for example)
-	},
-	userAgent: 'G.I. Joe'	// the user agent for each request to Google
+							// all the options for Nightmare, (show: true for example)
+	}	
 }
 ```
 
