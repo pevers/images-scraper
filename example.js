@@ -9,6 +9,7 @@ google.list({
 	keyword: 'banana',
 	num: 10,
 	detail: true,
+	//resolution:'l',
 	nightmare: {
 		show: true
 	}
