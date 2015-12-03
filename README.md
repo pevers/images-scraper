@@ -26,22 +26,6 @@ google.list({
 });
 ```
 
-Will output:
-
-```
-[ 'https://www.organicfacts.net/wp-content/uploads/2013/05/Banana21.jpg',
-  'http://www.bbcgoodfood.com/sites/default/files/glossary/banana-crop.jpg',
-  'http://dreamatico.com/data_images/banana/banana-3.jpg',
-  'https://upload.wikimedia.org/wikipedia/commons/4/4c/Bananas.jpg',
-  'http://pngimg.com/upload/banana_PNG835.png',
-  'http://globe-views.com/dcim/dreams/bananas/bananas-03.jpg',
-  'http://i.huffpost.com/gen/1553496/images/o-BANANA-facebook.jpg',
-  'http://fitnessandhealthadvisor.com/wp-content/uploads/2013/05/bananas1.jpeg',
-  'http://i.telegraph.co.uk/multimedia/archive/03120/banana_3120781b.jpg',
-  'http://cdn1.medicalnewstoday.com/content/images/articles/271157-bananas.jpg' ]
-
-```
-
 # Example Bing (very fast)
 ```js
 var Scraper = require ('images-scraper')
@@ -67,7 +51,6 @@ var options = {
 	// general
 	keyword: 'keyword',		// required,
 	userAgent: 'G.I. Joe',	// the user agent for each request to Google (default: Chrome)
-	detail: false,			// scrape details aswell, size, format etc. (default: false)
 
 	// google specific
 	rlimit: '10',			// number of requests to Google p second, default: unlimited

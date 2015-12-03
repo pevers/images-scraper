@@ -6,29 +6,33 @@ var Scraper = require ('./index')
   , pics = new Scraper.Picsearch();
 
 // will take ALOT of time if num=undefined
-google.list({
-	keyword: 'coca cola',
-	num: 10,
-	//resolution:'l',
-})
-.then(function (res) {
-	console.log('first 10 results from google', res);
-}).catch(function(err) {
-	console.log('err', err);
-});
+// google.list({
+// 	keyword: 'coca cola',
+// 	num: 10,
+// 	nightmare: {
+// 		show: true
+// 	}
+// 	//resolution:'l',
+// })
+// .then(function (res) {
+// 	console.log('first 10 results from google', res);
+// }).catch(function(err) {
+// 	console.log('err',err);
+// });
 
-bing.list({
-	keyword: 'banana',
-	num: 10
-})
-.then(function (res) {
-	console.log('first 10 results from bing', res);
-}).catch(function(err) {
-	console.log('err',err);
-})
+// bing.list({
+// 	keyword: 'banana',
+// 	num: 10
+// })
+// .then(function (res) {
+// 	console.log('first 10 results from bing', res);
+// }).catch(function(err) {
+// 	console.log('err',err);
+// })
 
 pics.list({
 	keyword: 'banana',
+	num: 10,
 	detail: true
 }).then(function (res) {
 	console.log('out',res);
