@@ -2,7 +2,8 @@
 
 var Scraper = require ('./index')
   , google = new Scraper.Google()
-  , bing = new Scraper.Bing();
+  , bing = new Scraper.Bing()
+  , pics = new Scraper.Picsearch();
 
 // will take ALOT of time if num=undefined
 google.list({
@@ -29,3 +30,13 @@ bing.list({
 }).catch(function(err) {
 	console.log('err',err);
 })
+
+pics.list({
+	keyword: 'banana',
+	num: 10,
+	detail: true
+}).then(function (res) {
+	console.log('out',res);
+}).catch(function (err) {
+	console.log('err',err);
+});
