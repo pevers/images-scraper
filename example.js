@@ -21,6 +21,11 @@ google.list({
 	console.log('err',err);
 });
 
+// listening on events is also possible
+google.on('result', function(item) {
+	console.log('result', item);
+});
+
 bing.list({
 	keyword: 'banana',
 	num: 10
@@ -29,7 +34,7 @@ bing.list({
 	console.log('first 10 results from bing', res);
 }).catch(function(err) {
 	console.log('err',err);
-})
+});
 
 pics.list({
 	keyword: 'banana',
@@ -44,7 +49,7 @@ yahoo.list({
 	keyword: 'banana',
 	num: 10,
 }).then(function (res) {
-	console.log('results',res);
+	console.log('results', res);
 }).catch(function (err) {
 	console.log('err',err);
 });

@@ -1,5 +1,5 @@
 # images-scraper
-This a simple way to scrape Google/Bing images using Nightmare and not be dependent on any API. The headless browser will just behave like a normal person, scroll and click. A rate limiter is implemented and can be used to prevent bans. The Bing scraper doesn't need a headless browser and operates therefore a lot faster.
+This a simple way to scrape Google/Bing images using Nightmare and not be dependent on any API. The headless browser will just behave like a normal person, scroll and click. A rate limiter is implemented and can be used to prevent bans. Only the Google scraper uses a headless browser, the other providers use custom requests to generate the results.
 
 # Installation
 ```npm install images-scraper```
@@ -24,6 +24,11 @@ google.list({
 }).catch(function(err) {
 	console.log('err', err);
 });
+
+// you can also watch on events
+google.on('result', function (item) {
+	console.log('out', item);
+});
 ```
 
 # Example Bing (very fast)
@@ -43,6 +48,30 @@ bing.list({
 })
 ```
 
+# Yahoo
+```js
+yahoo.list({
+	keyword: 'banana',
+	num: 10,
+}).then(function (res) {
+	console.log('results', res);
+}).catch(function (err) {
+	console.log('err',err);
+});
+```
+
+# Picsearch
+```js
+pics.list({
+	keyword: 'banana',
+	num: 10,
+}).then(function (res) {
+	console.log('out',res);
+}).catch(function (err) {
+	console.log('err',err);
+});
+```
+
 # Options
 Options that can be passed to each scraper:
 
@@ -51,6 +80,7 @@ var options = {
 	// general
 	keyword: 'keyword',		// required,
 	userAgent: 'G.I. Joe',	// the user agent for each request to Google (default: Chrome)
+	num: 10,				// amount of results, can be left empty but will take a lot longer
 
 	// google specific
 	rlimit: '10',			// number of requests to Google p second, default: unlimited
