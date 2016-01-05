@@ -4,7 +4,7 @@
   "description": "Simple and fast scraper for Google/Bing images using Nightmare and Request",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -23,9 +23,13 @@
   "homepage": "https://github.com/pevers/images-scraper#readme",
   "dependencies": {
     "bluebird": "^3.0.5",
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.2.0",
     "cheerio": "^0.19.0",
     "limiter": "^1.1.0",
+    "lodash": "^3.10.1",
     "nightmare": "^2.0.7",
-    "request": "^2.67.0"
+    "request": "^2.67.0",
+    "validator": "^4.5.0"
   }
 }
