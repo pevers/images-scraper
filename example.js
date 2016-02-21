@@ -10,10 +10,14 @@ var Scraper = require ('./index')
 google.list({
 	keyword: 'coca cola',
 	num: 10,
+	detail: true,
 	nightmare: {
 		show: true
-	}
-	//resolution:'l',
+	},
+  advanced: {
+    imgType: 'photo', // options: clipart, face, lineart, news, photo
+    resolution: undefined // options: l(arge), m(edium), i(cons), etc.
+  }
 })
 .then(function (res) {
 	console.log('first 10 results from google', res);
