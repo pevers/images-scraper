@@ -1,6 +1,6 @@
 {
   "name": "images-scraper",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "Simple and fast scraper for Google/Bing images using Nightmare and Request",
   "main": "index.js",
   "scripts": {
