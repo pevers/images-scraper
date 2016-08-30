@@ -16,7 +16,8 @@ google.list({
 	},
   advanced: {
     imgType: 'photo', // options: clipart, face, lineart, news, photo
-    resolution: undefined // options: l(arge), m(edium), i(cons), etc.
+    resolution: undefined, // options: l(arge), m(edium), i(cons), etc.
+    color: undefined // options: color, gray, trans
   }
 })
 .then(function (res) {
