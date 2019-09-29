@@ -22,9 +22,9 @@ let google = new Scraper.Google({
 		headless: false
 	},
   advanced: {
-    imgType: 'photo', 			// options: clipart, face, lineart, news, photo
-    resolution: undefined, 	// options: l(arge), m(edium), i(cons), etc.
-    color: undefined 				// options: color, gray, trans
+    imgType: 'photo', // options: clipart, face, lineart, news, photo
+    resolution: undefined, // options: l(arge), m(edium), i(cons), etc.
+    color: undefined // options: color, gray, trans
   }
 });
 
@@ -39,11 +39,10 @@ Options that can be passed to the scraper:
 
 ```js
 var options = {
-	{ keyword, limit = 10, userAgent = , puppeteer = {}, advanced }
-	keyword: 'banana',					// required,
-	userAgent: 'Mozilla/5.0 (X11; Linux i686; rv:64.0) Gecko/20100101 Firefox/64.0',			// the user agent
-	limit: 10,									// amount of results to fetch
-	puppeteer: {},	// puppeteer options, for example, { headless: false }
+	keyword: 'banana', // required,
+	userAgent: 'Mozilla/5.0 (X11; Linux i686; rv:64.0) Gecko/20100101 Firefox/64.0', // the user agent
+	limit: 10, // amount of results to fetch
+	puppeteer: {}, // puppeteer options, for example, { headless: false }
 }
 ```
 
