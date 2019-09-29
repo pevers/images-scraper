@@ -1,7 +1,7 @@
 {
   "name": "images-scraper",
-  "version": "2.0.12",
-  "description": "Simple and fast scraper for Google/Bing images using Nightmare and Request",
+  "version": "3.0.0",
+  "description": "Simple and fast scraper for Google images using Puppeteer",
   "main": "index.js",
   "scripts": {
     "test": "mocha test"
@@ -22,14 +22,12 @@
   },
   "homepage": "https://github.com/pevers/images-scraper#readme",
   "dependencies": {
-    "bluebird": "^3.0.5",
-    "chai": "^3.4.1",
-    "chai-as-promised": "^5.2.0",
-    "cheerio": "^0.22.0",
-    "limiter": "^1.1.0",
-    "lodash": "^4.17.15",
-    "nightmare": "^2.0.7",
-    "request": "^2.67.0",
-    "validator": "^4.5.0"
+    "puppeteer": "^1.20.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^6.2.1",
+    "validator": "^11.1.0"
   }
 }
