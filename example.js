@@ -3,8 +3,8 @@
 var Scraper = require ('./index');
 
 let google = new Scraper.Google({
-	keyword: 'coca cola',
-	limit: 10,
+	keyword: 'banana',
+	limit: 200,
 	puppeteer: {
 		headless: false
 	},

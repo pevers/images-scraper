@@ -1,98 +1,49 @@
 # images-scraper
-This a simple way to scrape Google/Bing images using Nightmare and not be dependent on any API. The headless browser will just behave like a normal person, scroll and click. A rate limiter is implemented and can be used to prevent bans. Only the Google scraper uses a headless browser, the other providers use custom requests to generate the results.
+This a simple way to scrape Google images using Puppeteer. The headless browser will behave as a 'normal' user and scrolls to the bottom of the page until we have enough results.
 
 # Installation
 ```npm install images-scraper```
 
 # Example Google
-Give me the first 10 images of Banana's from Google (using headless browser)
+Give me the first 200 images of Banana's from Google (using headless browser)
 
 ```js
-var Scraper = require ('images-scraper')
-  , google = new Scraper.Google();
+var Scraper = require ('./index');
 
-google.list({
+let google = new Scraper.Google({
 	keyword: 'banana',
-	num: 10,
-	detail: true,
-	nightmare: {
-		show: true
-	}
-})
-.then(function (res) {
-	console.log('first 10 results from google', res);
-}).catch(function(err) {
-	console.log('err', err);
+	limit: 200,
+	puppeteer: {
+		headless: false
+	},
+  advanced: {
+    imgType: 'photo', 			// options: clipart, face, lineart, news, photo
+    resolution: undefined, 	// options: l(arge), m(edium), i(cons), etc.
+    color: undefined 				// options: color, gray, trans
+  }
 });
 
-// you can also watch on events
-google.on('result', function (item) {
-	console.log('out', item);
-});
-```
-
-# Example Bing (very fast)
-```js
-var Scraper = require ('images-scraper')
-  , bing = new Scraper.Bing();
-
-bing.list({
-	keyword: 'banana',
-	num: 10,
-	detail: true
-})
-.then(function (res) {
-	console.log('first 10 results from bing', res);
-}).catch(function(err) {
-	console.log('err',err);
-})
-```
-
-# Yahoo
-```js
-yahoo.list({
-	keyword: 'banana',
-	num: 10,
-}).then(function (res) {
-	console.log('results', res);
-}).catch(function (err) {
-	console.log('err',err);
-});
-```
-
-# Picsearch
-```js
-pics.list({
-	keyword: 'banana',
-	num: 10,
-}).then(function (res) {
-	console.log('out',res);
-}).catch(function (err) {
-	console.log('err',err);
-});
+(async () => {
+	const results = await google.start();
+	console.log('results',results);
+})();
 ```
 
 # Options
-Options that can be passed to each scraper:
+Options that can be passed to the scraper:
 
 ```js
 var options = {
-	// general
-	keyword: 'keyword',		// required,
-	userAgent: 'G.I. Joe',	// the user agent for each request to Google (default: Chrome)
-	num: 10,				// amount of results, can be left empty but will take a lot longer
-
-	// google specific
-	rlimit: '10',			// number of requests to Google p second, default: unlimited
-	timeout: 10000,			// timeout when things go wrong, default: 10000
-	nightmare: {
-							// all the options for Nightmare, (show: true for example)
-	}	
+	{ keyword, limit = 10, userAgent = , puppeteer = {}, advanced }
+	keyword: 'banana',					// required,
+	userAgent: 'Mozilla/5.0 (X11; Linux i686; rv:64.0) Gecko/20100101 Firefox/64.0',			// the user agent
+	limit: 10,									// amount of results to fetch
+	puppeteer: {},	// puppeteer options, for example, { headless: false }
 }
 ```
 
 # License
-Copyright (c) 2015, Peter Evers <pevers90@gmail.com>
+Copyright (c) 2019, Peter Evers <pevers90@gmail.com>
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
