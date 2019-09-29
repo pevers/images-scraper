@@ -1,10 +1,14 @@
 # images-scraper
 This a simple way to scrape Google images using Puppeteer. The headless browser will behave as a 'normal' user and scrolls to the bottom of the page until we have enough results.
 
+<p align="center">
+    <img src="https://media.giphy.com/media/WSqsRhuPWPTrYtXAiN/giphy.gif">
+</p>
+
 # Installation
 ```npm install images-scraper```
 
-# Example Google
+# Example
 Give me the first 200 images of Banana's from Google (using headless browser)
 
 ```js
