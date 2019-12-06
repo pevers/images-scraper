@@ -13,7 +13,7 @@ This a simple way to scrape Google images using Puppeteer. The headless browser 
 Give me the first 200 images of Banana's from Google (using headless browser)
 
 ```js
-var Scraper = require ('./index');
+var Scraper = require ('images-scraper');
 
 let google = new Scraper.Google({
 	keyword: 'banana',
