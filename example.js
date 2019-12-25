@@ -8,10 +8,12 @@ let google = new Scraper.Google({
 	puppeteer: {
 		headless: false
 	},
-  advanced: {
-    imgType: 'photo', 			// options: clipart, face, lineart, news, photo
-    resolution: undefined, 	// options: l(arge), m(edium), i(cons), etc.
-    color: undefined 				// options: color, gray, trans
+  tbs: {
+		// every possible tbs search option, some examples and more info: http://jwebnet.net/advancedgooglesearch.html
+    isz: undefined,	 				// options: l(arge), m(edium), i(cons), etc. 
+    itp: undefined, 				// options: clipart, face, lineart, news, photo
+		ic: undefined, 					// options: color, gray, trans
+		sur: undefined,					// options: fmc (commercial reuse with modification), fc (commercial reuse), fm (noncommercial reuse with modification), f (noncommercial reuse)
   }
 });
 
