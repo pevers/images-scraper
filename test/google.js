@@ -30,7 +30,7 @@ describe('Google Tests', function() {
 	it('should return icons', async () => {
 		const google = new Scraper.Google({
 			keyword: 'coca cola',
-			advanced: { resolution: 'i' },
+			tbs: { isz: 'i' },
 			limit: 10
 		});
 		const results = await google.start();
