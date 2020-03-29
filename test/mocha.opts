@@ -1,2 +1,2 @@
 --reporter spec
---require test/support/node
+--require test/helpers/node

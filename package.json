@@ -1,10 +1,12 @@
 {
   "name": "images-scraper",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Simple and fast scraper for Google images using Puppeteer",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "check-codestyle": "prettier-check '**/*.{js,jsx,json,css,ts,tsx,md,yaml}'",
+    "fix-all-code-style": "prettier --write '**/*.{js,jsx,json,css,ts,tsx,md,yaml}'"
   },
   "repository": {
     "type": "git",
@@ -22,12 +24,44 @@
   },
   "homepage": "https://github.com/pevers/images-scraper#readme",
   "dependencies": {
-    "puppeteer": "^1.20.0"
+    "cheerio": "^1.0.0-rc.3",
+    "husky": "^4.2.3",
+    "prettier": "^1.19.1",
+    "puppeteer": "^2.1.1",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
+    "axios": "^0.19.2",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^6.2.1",
+    "mocha": "^6.2.3",
+    "prettier-check": "^2.0.0",
     "validator": "^11.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "overrides": [
+      {
+        "files": "*.css",
+        "options": {
+          "useTabs": false,
+          "tabWidth": 2
+        }
+      },
+      {
+        "files": "*.yaml",
+        "options": {
+          "useTabs": false,
+          "tabWidth": 2
+        }
+      }
+    ]
   }
 }

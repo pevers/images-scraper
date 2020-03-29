@@ -1,47 +1,36 @@
+const fileSize = require('./helpers/file-size');
+
 describe('Google Tests', function() {
-	this.timeout(60000);		// 1 minute timeout
+  this.timeout(60000); // 1 minute timeout
 
-	const Scraper = require('../index');
-	const validator = require('validator');
-	const expect = require('chai').expect;
+  const Scraper = require('../src/google/scraper');
+  const validator = require('validator');
+  const expect = require('chai').expect;
 
-	it('should probably not return anything for ROTC275-mice', () => {
-		const google = new Scraper.Google({
-			keyword: 'ROTC275-mice',
-			limit: 10
-		});
-		return google.start().should.eventually.be.empty;
-	});
-	
-	it('should eventually return some results for coca cola', async () => {
-		const google = new Scraper.Google({
-			keyword: 'coca cola',
-			limit: 10
-		});
-		const results = await google.start();
-		results.forEach(item => {
-			validator.isURL(item.url).should.be.true;
-			validator.isURL(item.thumb_url).should.be.true;
-			expect(item.width).to.be.a('number');
-			expect(item.height).to.be.a('number');
-		});
-	});
+  it('should not return anything for 4vWJtGWF6mj7', () => {
+    const google = new Scraper();
+    return google.scrape('4vWJtGWF6mj7', 10).should.eventually.be.empty;
+  });
 
-	it('should return icons', async () => {
-		const google = new Scraper.Google({
-			keyword: 'coca cola',
-			tbs: { isz: 'i' },
-			limit: 10
-		});
-		const results = await google.start();
-		results.forEach(item => {
-			expect(item.width <= 256).to.be.true;
-		});
-	});
+  it('should eventually return some results for banana', async () => {
+    const google = new Scraper();
+    const results = await google.scrape('banana', 10);
+    for (result of results) {
+      validator.isURL(result.url).should.be.true;
+    }
+  });
 
-	it('should be rejected if no keyword is provided', () => {
-		expect(() => new Scraper.Google({
-			limit: 10
-		})).to.throw('no keyword provided');
-	});
+  it('should return icons', async () => {
+    const google = new Scraper({ tbs: { isz: 'i' } });
+    const results = await google.scrape('banana', 5);
+    for (result of results) {
+      const size = await fileSize(result.url);
+      expect(size <= 100000).to.be.true;
+    }
+  });
+
+  it('should be rejected if no search query is provided', () => {
+    const scraper = new Scraper();
+    return scraper.scrape().should.be.rejected;
+  });
 });
