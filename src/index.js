@@ -1,1 +1,1 @@
-module.exports.Scraper = require('./google/scraper');
+module.exports = require('./google/scraper');
