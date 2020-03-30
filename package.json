@@ -2,7 +2,7 @@
   "name": "images-scraper",
   "version": "5.0.1",
   "description": "Simple and fast scraper for Google images using Puppeteer",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "mocha test",
     "check-codestyle": "prettier-check '**/*.{js,jsx,json,css,ts,tsx,md,yaml}'",
