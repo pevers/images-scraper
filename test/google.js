@@ -25,7 +25,7 @@ describe('Google Tests', function() {
     const results = await google.scrape('banana', 5);
     for (result of results) {
       const size = await fileSize(result.url);
-      expect(size <= 100000).to.be.true;
+      expect(size).to.be.below(200000);
     }
   });
 
