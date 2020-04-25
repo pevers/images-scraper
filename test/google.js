@@ -1,5 +1,3 @@
-const fileSize = require('./helpers/file-size');
-
 describe('Google Tests', function() {
   this.timeout(60000); // 1 minute timeout
 
@@ -20,17 +18,18 @@ describe('Google Tests', function() {
     }
   });
 
-  it('should return icons', async () => {
-    const google = new Scraper({ tbs: { isz: 'i' } });
-    const results = await google.scrape('banana', 5);
-    for (result of results) {
-      const size = await fileSize(result.url);
-      expect(size).to.be.below(200000);
-    }
-  });
-
   it('should be rejected if no search query is provided', () => {
     const scraper = new Scraper();
     return scraper.scrape().should.be.rejected;
   });
+
+  it('should return the correct length with pagination', async () => {
+    const google = new Scraper();
+    const results = await google.scrape('banana', 300);
+    expect(results.length).be.equal(300);
+    for (result of results) {
+      const occurrences = results.filter(searchResult => searchResult.url === result.url);
+      expect(occurrences.length).to.lessThan(5);
+    }
+  })
 });
