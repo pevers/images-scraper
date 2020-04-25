@@ -24,11 +24,12 @@ describe('Google Tests', function() {
   });
 
   it('should return the correct length with pagination', async () => {
-    const google = new Scraper({puppeteer: {headless: false}});
+    const google = new Scraper();
     const results = await google.scrape('banana', 300);
+    expect(results.length).be.equal(300);
     for (result of results) {
       const occurrences = results.filter(searchResult => searchResult.url === result.url);
-      expect(occurrences.length).to.lessThan(3);
+      expect(occurrences.length).to.lessThan(5);
     }
   })
 });
