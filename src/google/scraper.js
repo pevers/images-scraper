@@ -61,7 +61,7 @@ class GoogleScraper {
 
       const html = await page.content();
       const links = this._parseLinksFromHTML(html);
-      results = links.slice(0, limit - results.length);
+      results = links.slice(0, limit);
 
       logger.debug(`Got ${results.length} results so far`);
     }
