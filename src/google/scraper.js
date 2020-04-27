@@ -13,7 +13,7 @@ const logger = require('../logger');
 class GoogleScraper {
   constructor({
     userAgent = 'Mozilla/5.0 (X11; Linux i686; rv:64.0) Gecko/20100101 Firefox/64.0',
-    scrollDelay = 100,
+    scrollDelay = 500,
     puppeteer = {},
     tbs = {},
   } = {}) {
@@ -54,14 +54,19 @@ class GoogleScraper {
     await page.setUserAgent(this.userAgent);
 
     let results = [];
-    let isEndNotReached = true;
-    while (results.length < limit && isEndNotReached) {
-      isEndNotReached = await this._scrollToEnd(page);
+    let previousCount = -1;
+    while (results.length < limit) {
+      await this._scrollToEnd(page);
       await this._clickAllImages(page);
 
       const html = await page.content();
       const links = this._parseLinksFromHTML(html);
+      previousCount = results.length;
       results = links.slice(0, limit);
+      if (previousCount === results.length) {
+        logger.debug('End of the page is reached');
+        break;
+      }
 
       logger.debug(`Got ${results.length} results so far`);
     }
@@ -73,7 +78,6 @@ class GoogleScraper {
   /**
    * Scroll to the end of the page.
    * @param {page} Puppeteer page to scroll
-   * @returns false if the end of the page is reached. Otherwise true.
    */
   async _scrollToEnd(page) {
     logger.debug('Scrolling to the end of the page');
@@ -81,19 +85,10 @@ class GoogleScraper {
     const isScrollable = await this._isScrollable(page);
     if (!isScrollable) {
       logger.debug('No results on this page');
-      return false;
+      return;
     }
 
     const buttonIsVisible = await this._isButtonVisible(page);
-    let infiniteScrollStatus = await this._getInfiniteScrollStatus(page);
-
-    if (infiniteScrollStatus === "Looks like you've reached the end") {
-      logger.debug('Reached the end of the page');
-      return false;
-    }
-
-    const previousHeight = await page.evaluate('document.body.scrollHeight');
-
     await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
     logger.debug(`Scrolled to bottom of the page`);
 
@@ -104,8 +99,6 @@ class GoogleScraper {
 
     await page.waitFor(this.scrollDelay);
     await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-
-    return true; // We (might) still have some more results
   }
 
   _isScrollable(page) {

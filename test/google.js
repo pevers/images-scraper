@@ -31,5 +31,11 @@ describe('Google Tests', function() {
       const occurrences = results.filter(searchResult => searchResult.url === result.url);
       expect(occurrences.length).to.lessThan(5);
     }
+  });
+
+  it('should stop when the end is reached', async () => {
+    const google = new Scraper();
+    const results = await google.scrape('banana', 1000);
+    expect(results.length).be.lessThan(1000);
   })
 });
