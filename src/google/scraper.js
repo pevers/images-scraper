@@ -58,6 +58,7 @@ class GoogleScraper {
     while (results.length < limit) {
       await this._scrollToEnd(page);
       await this._clickAllImages(page);
+      await page.waitFor(200);  // Delay needed to inject the JS elements
 
       const html = await page.content();
       const links = this._parseLinksFromHTML(html);
