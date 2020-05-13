@@ -58,7 +58,8 @@ class GoogleScraper {
     while (results.length < limit) {
       await this._scrollToEnd(page);
       await this._clickAllImages(page);
-      await page.waitFor(200);  // Delay needed to inject the JS elements
+      await page.waitForSelector("#islrg a[href^='/imgres']", { timeout: 1000 })  // Wait for the selector to appear in page.
+      .catch(() => logger.debug('No results on this page')); // Unblock the flow
 
       const html = await page.content();
       const links = this._parseLinksFromHTML(html);
