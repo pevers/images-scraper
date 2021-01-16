@@ -29,8 +29,8 @@ class GoogleScraper {
     }
 
     const options = Object.keys(tbs)
-      .filter(key => tbs[key])
-      .map(key => `${key}:${tbs[key]}`)
+      .filter((key) => tbs[key])
+      .map((key) => `${key}:${tbs[key]}`)
       .join(',');
     return encodeURIComponent(options);
   }
@@ -58,8 +58,9 @@ class GoogleScraper {
     while (results.length < limit) {
       await this._scrollToEnd(page);
       await this._clickAllImages(page);
-      await page.waitForSelector("#islrg a[href^='/imgres']", { timeout: 1000 })  // Wait for the selector to appear in page.
-      .catch(() => logger.debug('No results on this page')); // Unblock the flow
+      await page
+        .waitForTimeout("#islrg a[href^='/imgres']", { timeout: 1000 }) // Wait for the selector to appear in page.
+        .catch(() => logger.debug('No results on this page')); // Unblock the flow
 
       const html = await page.content();
       const links = this._parseLinksFromHTML(html);
@@ -99,7 +100,7 @@ class GoogleScraper {
       logger.debug('Clicked on show more results');
     }
 
-    await page.waitFor(this.scrollDelay);
+    await page.waitForTimeout(this.scrollDelay);
     await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
   }
 
@@ -132,7 +133,7 @@ class GoogleScraper {
       let elements = document.querySelectorAll('#islrg img');
 
       function rightClick(element) {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           let event = new MouseEvent('mousedown', {
             bubbles: true,
             cancelable: false,
@@ -161,19 +162,12 @@ class GoogleScraper {
 
     let $ = cheerio.load(html);
 
-    $("#islrg a[href^='/imgres']").each(function(i, elem) {
-      let description = $(this)
-        .next()
-        .find('div > div:first-child')
-        .text();
-
+    $("#islrg a[href^='/imgres']").each(function (i, elem) {
       let link = $(this).attr('href');
-
       let parsedLink = url.parse(link, { parseQueryString: true });
       let imageurl = parsedLink.query.imgurl;
       let source = parsedLink.query.imgrefurl;
-
-      links.push({ url: imageurl, source, description });
+      links.push({ url: imageurl, source });
     });
 
     return links;

@@ -1,10 +1,10 @@
 {
   "name": "images-scraper",
-  "version": "5.0.7",
+  "version": "6.0.0",
   "description": "Simple and fast scraper for Google images using Puppeteer",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha test",
+    "test": "jest",
     "check-codestyle": "prettier-check '**/*.{js,jsx,json,css,ts,tsx,md,yaml}'",
     "fix-all-code-style": "prettier --write '**/*.{js,jsx,json,css,ts,tsx,md,yaml}'"
   },
@@ -24,17 +24,16 @@
   },
   "homepage": "https://github.com/pevers/images-scraper#readme",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "husky": "^4.2.3",
-    "prettier": "^1.19.1",
-    "puppeteer": "^2.1.1",
-    "winston": "^3.2.1"
+    "cheerio": "^1.0.0-rc.5",
+    "husky": "^4.3.8",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
+    "puppeteer": "^5.5.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
-    "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
-    "mocha": "^6.2.3",
+    "axios": "^0.21.1",
     "prettier-check": "^2.0.0",
     "validator": "^11.1.0"
   },
