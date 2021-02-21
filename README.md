@@ -65,7 +65,12 @@ var options = {
 };
 ```
 
-## Heroku
+# Repl.it
+Example to fork: https://repl.it/join/hylyxvxc-peterevers
+
+Running this on Repl.it requires you to create a Bash repl instead of a NodeJS repl. Creating a Bash repl will provide you the Chromium dependency.
+
+# Heroku
 
 To use this packages on Heroku, install https://elements.heroku.com/buildpacks/jontewks/puppeteer-heroku-buildpack .
 Then run.
