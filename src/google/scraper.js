@@ -16,11 +16,13 @@ class GoogleScraper {
     scrollDelay = 500,
     puppeteer = {},
     tbs = {},
+    safe = false,
   } = {}) {
     this.userAgent = userAgent;
     this.scrollDelay = scrollDelay;
     this.puppeteerOptions = puppeteer;
     this.tbs = this._parseRequestParameters(tbs);
+    this.safe = this._isQuerySafe(safe);
   }
 
   _parseRequestParameters(tbs) {
@@ -34,12 +36,18 @@ class GoogleScraper {
       .join(',');
     return encodeURIComponent(options);
   }
+  
+  _isQuerySafe(safe) {
+    if (safe === true) {
+      return '&safe=active';
+    } else return '';
+  }
 
   async scrape(searchQuery, limit = 100) {
     if (searchQuery === undefined || searchQuery === '') {
       throw new Error('Invalid search query provided');
     }
-    const query = `https://www.google.com/search?q=${searchQuery}&source=lnms&tbm=isch&sa=X&tbs=${this.tbs}`;
+    const query = `https://www.google.com/search?q=${searchQuery}&source=lnms&tbm=isch${this.safe}&sa=X&tbs=${this.tbs}`;
 
     logger.info(`Start Google search for "${searchQuery}"`);
     const browser = await puppeteer.launch({
