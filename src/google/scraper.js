@@ -36,7 +36,7 @@ class GoogleScraper {
       .join(',');
     return encodeURIComponent(options);
   }
-  
+
   _isQuerySafe(safe) {
     if (safe === true) {
       return '&safe=active';
@@ -49,7 +49,7 @@ class GoogleScraper {
     }
     const query = `https://www.google.com/search?q=${searchQuery}&source=lnms&tbm=isch${this.safe}&sa=X&tbs=${this.tbs}`;
 
-    logger.info(`Start Google search for "${searchQuery}"`);
+    logger.debug(`Start Google search for "${searchQuery}"`);
     const browser = await puppeteer.launch({
       ...this.puppeteerOptions,
     });

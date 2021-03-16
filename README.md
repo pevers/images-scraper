@@ -62,10 +62,12 @@ var options = {
     ic:   // options: color, gray, trans
     sur:  // options: fmc (commercial reuse with modification), fc (commercial reuse), fm (noncommercial reuse with modification), f (noncommercial reuse)
   },
+  safe: false   // enable/disable safe search
 };
 ```
 
 # Repl.it
+
 Example to fork: https://repl.it/join/hylyxvxc-peterevers
 
 Running this on Repl.it requires you to create a Bash repl instead of a NodeJS repl. Creating a Bash repl will provide you the Chromium dependency.
