@@ -166,16 +166,18 @@ class GoogleScraper {
   }
 
   _parseLinksFromHTML(html) {
-    let links = [];
+    const links = [];
 
-    let $ = cheerio.load(html);
+    const $ = cheerio.load(html);
 
-    $("#islrg a[href^='/imgres']").each(function (i, elem) {
-      let link = $(this).attr('href');
-      let parsedLink = url.parse(link, { parseQueryString: true });
-      let imageurl = parsedLink.query.imgurl;
-      let source = parsedLink.query.imgrefurl;
-      links.push({ url: imageurl, source });
+    $("#islrg div[jsaction][data-tbnid]").each(function (_i, containerElement) {
+      const containerElement_ = $(containerElement)
+      const linkElementHref = containerElement_.find("a[href^='/imgres']").attr('href');
+      const imageElementAlt = containerElement_.find("img").attr('alt')
+      const parsedLink = url.parse(linkElementHref, { parseQueryString: true });
+      const imageurl = parsedLink.query.imgurl;
+      const source = parsedLink.query.imgrefurl;
+      links.push({ url: imageurl, source, title: imageElementAlt });
     });
 
     return links;
