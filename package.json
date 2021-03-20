@@ -1,6 +1,6 @@
 {
   "name": "images-scraper",
-  "version": "6.1.1",
+  "version": "6.2.1",
   "description": "Simple and fast scraper for Google images using Puppeteer",
   "main": "src/index.js",
   "scripts": {
