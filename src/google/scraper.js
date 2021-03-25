@@ -47,7 +47,7 @@ class GoogleScraper {
     if (searchQuery === undefined || searchQuery === '') {
       throw new Error('Invalid search query provided');
     }
-    const query = `https://www.google.com/search?q=${searchQuery}&source=lnms&tbm=isch${this.safe}&sa=X&tbs=${this.tbs}`;
+    const query = `https://www.google.com/search?${this.safe}q=${searchQuery}&source=lnms&tbm=isch&sa=X&tbs=${this.tbs}`;
 
     logger.info(`Start Google search for "${searchQuery}"`);
     const browser = await puppeteer.launch({
