@@ -42,7 +42,8 @@ const google = new Scraper({
 results [
   {
     url: 'https://api.time.com/wp-content/uploads/2019/11/gettyimages-459761948.jpg?quality=85&crop=0px%2C74px%2C1024px%2C536px&resize=1200%2C628&strip',
-    source: 'https://time.com/5730790/banana-panama-disease/'
+    source: 'https://time.com/5730790/banana-panama-disease/',
+    title: 'What We Can Learn From the Near-Extinction of Bananas | Time'
   },
   ...
 ]
@@ -62,10 +63,12 @@ var options = {
     ic:   // options: color, gray, trans
     sur:  // options: fmc (commercial reuse with modification), fc (commercial reuse), fm (noncommercial reuse with modification), f (noncommercial reuse)
   },
+  safe: false   // enable/disable safe search
 };
 ```
 
 # Repl.it
+
 Example to fork: https://repl.it/join/hylyxvxc-peterevers
 
 Running this on Repl.it requires you to create a Bash repl instead of a NodeJS repl. Creating a Bash repl will provide you the Chromium dependency.

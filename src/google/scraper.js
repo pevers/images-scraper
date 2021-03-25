@@ -36,7 +36,7 @@ class GoogleScraper {
       .join(',');
     return encodeURIComponent(options);
   }
-  
+
   _isQuerySafe(safe) {
     if (safe === true) {
       return '&safe=active';
@@ -49,7 +49,7 @@ class GoogleScraper {
     }
     const query = `https://www.google.com/search?${this.safe}q=${searchQuery}&source=lnms&tbm=isch&sa=X&tbs=${this.tbs}`;
 
-    logger.info(`Start Google search for "${searchQuery}"`);
+    logger.debug(`Start Google search for "${searchQuery}"`);
     const browser = await puppeteer.launch({
       ...this.puppeteerOptions,
     });
@@ -166,16 +166,18 @@ class GoogleScraper {
   }
 
   _parseLinksFromHTML(html) {
-    let links = [];
+    const links = [];
 
-    let $ = cheerio.load(html);
+    const $ = cheerio.load(html);
 
-    $("#islrg a[href^='/imgres']").each(function (i, elem) {
-      let link = $(this).attr('href');
-      let parsedLink = url.parse(link, { parseQueryString: true });
-      let imageurl = parsedLink.query.imgurl;
-      let source = parsedLink.query.imgrefurl;
-      links.push({ url: imageurl, source });
+    $("#islrg div[jsaction][data-tbnid]").each(function (_i, containerElement) {
+      const containerElement_ = $(containerElement)
+      const linkElementHref = containerElement_.find("a[href^='/imgres']").attr('href');
+      const imageElementAlt = containerElement_.find("img").attr('alt')
+      const parsedLink = url.parse(linkElementHref, { parseQueryString: true });
+      const imageurl = parsedLink.query.imgurl;
+      const source = parsedLink.query.imgrefurl;
+      links.push({ url: imageurl, source, title: imageElementAlt });
     });
 
     return links;
