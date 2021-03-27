@@ -30,7 +30,8 @@
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "puppeteer": "^5.5.0",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "@types/puppeteer": "^5.4.3"
   },
   "devDependencies": {
     "axios": "^0.21.1",
