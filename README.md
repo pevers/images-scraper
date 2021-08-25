@@ -34,6 +34,21 @@ const google = new Scraper({
 })();
 ```
 
+## Results
+
+`node src/example.js`
+
+```js
+results [
+  {
+    url: 'https://api.time.com/wp-content/uploads/2019/11/gettyimages-459761948.jpg?quality=85&crop=0px%2C74px%2C1024px%2C536px&resize=1200%2C628&strip',
+    source: 'https://time.com/5730790/banana-panama-disease/',
+    title: 'What We Can Learn From the Near-Extinction of Bananas | Time'
+  },
+  ...
+]
+```
+
 # Example 2 Using an array in a single browser instance (save resources)
 
 Give me the first 200 images of the following array of strings from Google (using headless browser)
@@ -51,21 +66,6 @@ var fruits = ['banana', 'tomato', 'melon', 'strawberry'](async () => {
   const results = await google.scrape(fruits, 200);
   console.log('results', results);
 })();
-```
-
-## Results
-
-`node src/example.js`
-
-```js
-results [
-  {
-    url: 'https://api.time.com/wp-content/uploads/2019/11/gettyimages-459761948.jpg?quality=85&crop=0px%2C74px%2C1024px%2C536px&resize=1200%2C628&strip',
-    source: 'https://time.com/5730790/banana-panama-disease/',
-    title: 'What We Can Learn From the Near-Extinction of Bananas | Time'
-  },
-  ...
-]
 ```
 
 ## Results when using an array
