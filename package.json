@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/pevers/images-scraper#readme",
   "dependencies": {
-    "@types/puppeteer": "^5.4.4",
     "cheerio": "^1.0.0-rc.5",
     "puppeteer": "^10.2.0",
     "winston": "^3.3.3"
