@@ -1,4 +1,4 @@
-![Build Status](https://github.com/pevers/images-scraper/actions/workflows/ci/badge.svg)
+![Build Status](https://github.com/pevers/images-scraper/actions/workflows/ci.yaml/badge.svg)
 
 # images-scraper
 
