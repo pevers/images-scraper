@@ -1,7 +1,7 @@
 const Scraper = require('../google/scraper');
 const validator = require('validator');
 
-jest.setTimeout(60000);
+jest.setTimeout(80000);
 
 test('should be rejected if no search query is provided', () => {
   const scraper = new Scraper();
