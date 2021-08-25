@@ -23,6 +23,7 @@ class GoogleScraper {
     this.puppeteerOptions = puppeteer;
     this.tbs = this._parseRequestParameters(tbs);
     this.safe = this._isQuerySafe(safe);
+    browser = null;
   }
 
   _parseRequestParameters(tbs) {
@@ -43,17 +44,12 @@ class GoogleScraper {
     } else return '';
   }
 
-  async scrape(searchQuery, limit = 100) {
-    if (searchQuery === undefined || searchQuery === '') {
-      throw new Error('Invalid search query provided');
-    }
+  async _scrapePage(searchQuery, limit = 100) {
     const query = `https://www.google.com/search?${this.safe}&source=lnms&tbm=isch&sa=X&tbs=${this.tbs}&q=${searchQuery}`;
 
     logger.debug(`Start Google search for "${searchQuery}"`);
-    const browser = await puppeteer.launch({
-      ...this.puppeteerOptions,
-    });
-    const page = await browser.newPage();
+
+    const page = await this.browser.newPage();
     await page.setBypassCSP(true);
     await page.goto(query, {
       waitUntil: 'networkidle0',
@@ -81,6 +77,35 @@ class GoogleScraper {
 
       logger.debug(`Got ${results.length} results so far`);
     }
+
+    await page.close()
+
+    return results;
+  }
+
+  async scrape(searchQuery, limit) {
+    if (searchQuery === undefined || searchQuery === '') {
+      throw new Error('Invalid search query provided');
+    }
+
+    this.browser = await puppeteer.launch({
+      ...this.puppeteerOptions,
+    });
+
+    let results = [];
+
+    if (Array.isArray(searchQuery)) {
+      const promises = searchQuery.map(async (query) => {
+        const images = await this._scrapePage(query, limit);
+        return { query, images };
+      });
+      const responses = await Promise.allSettled(promises);
+      results = responses.map((r) => r.value).reduce((acc, curr) => [...acc, curr], []);
+    } else {
+      results = await this._scrapePage(searchQuery, limit);
+    }
+
+    await this._scrapePage(searchQuery, limit);
 
     await browser.close();
     return results;
