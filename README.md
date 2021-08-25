@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/pevers/images-scraper.svg?branch=master)](https://travis-ci.com/pevers/images-scraper)
+![Build Status](https://github.com/pevers/images-scraper/actions/workflows/ci/badge.svg)
 
 # images-scraper
 
@@ -47,9 +47,7 @@ const google = new Scraper({
   },
 });
 
-var fruits = ['banana', 'tomato', 'melon', 'strawberry']
-
-(async () => {
+var fruits = ['banana', 'tomato', 'melon', 'strawberry'](async () => {
   const results = await google.scrape(fruits, 200);
   console.log('results', results);
 })();
@@ -75,18 +73,19 @@ results [
 `node src/example.js`
 
 ```js
-results [
+results[
   {
-    query: "<Your query string>",
+    query: '<Your query string>',
     images: [
       {
-        url: 'https://api.time.com/wp-content/uploads/2019/11/gettyimages-459761948.jpg?quality=85&crop=0px%2C74px%2C1024px%2C536px&resize=1200%2C628&strip',
+        url:
+          'https://api.time.com/wp-content/uploads/2019/11/gettyimages-459761948.jpg?quality=85&crop=0px%2C74px%2C1024px%2C536px&resize=1200%2C628&strip',
         source: 'https://time.com/5730790/banana-panama-disease/',
-        title: 'What We Can Learn From the Near-Extinction of Bananas | Time'
-      }
-    ]
+        title: 'What We Can Learn From the Near-Extinction of Bananas | Time',
+      },
+    ],
   }
-]
+];
 ```
 
 # Options
