@@ -1,7 +1,7 @@
 const Scraper = require('../google/scraper');
 const validator = require('validator');
 
-jest.setTimeout(60_000);
+jest.setTimeout(60000);
 
 test('should be rejected if no search query is provided', () => {
   const scraper = new Scraper();
@@ -30,4 +30,12 @@ test('should stop when the end is reached', async () => {
   const google = new Scraper();
   const results = await google.scrape('banana', 1000);
   expect(results.length).toBeLessThan(1000);
+});
+
+test('multi-query scrape works', async () => {
+  const google = new Scraper();
+  const results = await google.scrape(['banana', 'strawberry'], 10);
+  expect(results.length).toEqual(2);
+  expect(results[0].images.length).toEqual(10);
+  expect(results[1].images.length).toEqual(10);
 });
