@@ -23,7 +23,7 @@ class GoogleScraper {
     this.puppeteerOptions = puppeteer;
     this.tbs = this._parseRequestParameters(tbs);
     this.safe = this._isQuerySafe(safe);
-    browser = null;
+    this.browser = null;
   }
 
   _parseRequestParameters(tbs) {
@@ -78,7 +78,7 @@ class GoogleScraper {
       logger.debug(`Got ${results.length} results so far`);
     }
 
-    await page.close()
+    await page.close();
 
     return results;
   }
@@ -99,15 +99,14 @@ class GoogleScraper {
         const images = await this._scrapePage(query, limit);
         return { query, images };
       });
-      const responses = await Promise.allSettled(promises);
-      results = responses.map((r) => r.value).reduce((acc, curr) => [...acc, curr], []);
+      results = await Promise.all(promises);
     } else {
       results = await this._scrapePage(searchQuery, limit);
     }
 
     await this._scrapePage(searchQuery, limit);
 
-    await browser.close();
+    await this.browser.close();
     return results;
   }
 
@@ -152,14 +151,6 @@ class GoogleScraper {
     });
   }
 
-  _getInfiniteScrollStatus(page) {
-    return page.evaluate(() => {
-      let status = document.querySelector('#islmp div[data-endedmessage] > div:last-child')
-        .innerText;
-      return status;
-    });
-  }
-
   async _clickAllImages(page) {
     logger.debug('Scrolling to the end of the page');
     return page.evaluate(() => {
@@ -195,10 +186,10 @@ class GoogleScraper {
 
     const $ = cheerio.load(html);
 
-    $("#islrg div[jsaction][data-tbnid]").each(function (_i, containerElement) {
-      const containerElement_ = $(containerElement)
+    $('#islrg div[jsaction][data-tbnid]').each(function (_i, containerElement) {
+      const containerElement_ = $(containerElement);
       const linkElementHref = containerElement_.find("a[href^='/imgres']").attr('href');
-      const imageElementAlt = containerElement_.find("img").attr('alt')
+      const imageElementAlt = containerElement_.find('img').attr('alt');
       const parsedLink = url.parse(linkElementHref, { parseQueryString: true });
       const imageurl = parsedLink.query.imgurl;
       const source = parsedLink.query.imgrefurl;

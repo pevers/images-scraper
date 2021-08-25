@@ -24,14 +24,14 @@
   },
   "homepage": "https://github.com/pevers/images-scraper#readme",
   "dependencies": {
+    "@types/puppeteer": "^5.4.4",
     "cheerio": "^1.0.0-rc.5",
     "husky": "^4.3.8",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
-    "puppeteer": "^5.5.0",
-    "winston": "^3.3.3",
-    "@types/puppeteer": "^5.4.3"
+    "puppeteer": "^10.2.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "axios": "^0.21.1",
