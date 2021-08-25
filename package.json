@@ -26,15 +26,15 @@
   "dependencies": {
     "@types/puppeteer": "^5.4.4",
     "cheerio": "^1.0.0-rc.5",
-    "husky": "^4.3.8",
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^3.1.0",
     "puppeteer": "^10.2.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
     "axios": "^0.21.1",
+    "husky": "^4.3.8",
+    "jest": "^26.6.3",
+    "pretty-quick": "^3.1.1",
+    "prettier": "^2.2.1",
     "prettier-check": "^2.0.0",
     "validator": "^11.1.0"
   },
