@@ -26,14 +26,13 @@ test('should return the correct length with pagination', async () => {
   }
 });
 
+test('should stop when the end is reached', async () => {
+  const google = new Scraper();
+  const results = await google.scrape('banana', 1000);
+  expect(results.length).toBeLessThan(1000);
+});
+
 // TODO: Fix this, these tests fail in Github Workflows
-
-// test('should stop when the end is reached', async () => {
-//   const google = new Scraper();
-//   const results = await google.scrape('banana', 1000);
-//   expect(results.length).toBeLessThan(1000);
-// });
-
 // test('multi-query scrape works', async () => {
 //   const google = new Scraper();
 //   const results = await google.scrape(['banana', 'strawberry'], 10);
