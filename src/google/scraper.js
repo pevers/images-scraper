@@ -54,7 +54,7 @@ class GoogleScraper {
     await page.goto(query, {
       waitUntil: 'networkidle0',
     });
-    
+
     const [button] = await page.$x("//button[contains(., 'Accept all')]");
     if (button) {
       await button.click();
@@ -62,7 +62,7 @@ class GoogleScraper {
         waitUntil: 'networkidle0',
       });
     }
-    
+
     await page.setViewport({ width: 1920, height: 1080 });
     await page.setUserAgent(this.userAgent);
 
