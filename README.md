@@ -2,7 +2,7 @@
 
 # images-scraper
 
-This a simple way to scrape Google images using Puppeteer. The headless browser will behave as a 'normal' user and scrolls to the bottom of the page until there are enough results.
+Simple NPM package to scrape Google images using Puppeteer. The headless browser will behave as a 'normal' user and scrolls to the bottom of the page until there are enough results.
 
 **Please note that this is not an ideal approach to scrape images. It is only a demonstration to scrape images from Google.
 If you don't care about the source, it is probably better to use a different search engine with an API, such as Bing.**
@@ -78,8 +78,7 @@ results[
     query: '<Your query string>',
     images: [
       {
-        url:
-          'https://api.time.com/wp-content/uploads/2019/11/gettyimages-459761948.jpg?quality=85&crop=0px%2C74px%2C1024px%2C536px&resize=1200%2C628&strip',
+        url: 'https://api.time.com/wp-content/uploads/2019/11/gettyimages-459761948.jpg?quality=85&crop=0px%2C74px%2C1024px%2C536px&resize=1200%2C628&strip',
         source: 'https://time.com/5730790/banana-panama-disease/',
         title: 'What We Can Learn From the Near-Extinction of Bananas | Time',
       },
