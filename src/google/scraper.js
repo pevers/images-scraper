@@ -55,11 +55,8 @@ class GoogleScraper {
       waitUntil: 'networkidle0',
     });
     
-    //Google Accept All
-    //Search for the button with the text "Accept all"
     const [button] = await page.$x("//button[contains(., 'Accept all')]");
     if (button) {
-      //Press the button and wait till the page finishes loading
       await button.click();
       await page.waitForNavigation({
         waitUntil: 'networkidle0',
