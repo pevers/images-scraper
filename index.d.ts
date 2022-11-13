@@ -7,7 +7,7 @@ export default class Scraper {
    * @param searchQuery the search query.
    * @param limit search limit, defaults to 100
    */
-  scrape(searchQuery: string | string[], limit?: number): Promise<Scraper.ScrapeResult>;
+  scrape(searchQuery: string | string[], limit?: number): Promise<Array<Scraper.ScrapeResult>>;
 }
 
 declare namespace Scraper {
