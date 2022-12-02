@@ -7,7 +7,7 @@ export default class Scraper {
    * @param searchQuery the search query.
    * @param limit search limit, defaults to 100
    */
-  scrape(searchQuery: string | string[], limit?: number): Promise<Array<Scraper.ScrapeResult>>;
+  scrape(searchQuery: string | string[], limit?: number): Promise<Array<Scraper.ScrapeResult> | Scraper.MultipleScrapeResult>;
 }
 
 declare namespace Scraper {
@@ -72,5 +72,17 @@ declare namespace Scraper {
      * Title for an image.
      */
     title: string;
+  }
+
+  export interface MultipleScrapeResult {
+    /**
+     * The search term used to get the results.
+     */
+    query: string;
+
+    /**
+     * The results for the search term.
+     */
+    results: Array<ScrapeResult>;
   }
 }
