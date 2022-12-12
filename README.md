@@ -24,7 +24,7 @@ var Scraper = require('images-scraper');
 
 const google = new Scraper({
   puppeteer: {
-    headless: false,
+    headless: true,
   },
 });
 
