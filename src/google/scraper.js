@@ -198,11 +198,13 @@ class GoogleScraper {
     $('#islrg div[jsaction][data-tbnid]').each(function (_i, containerElement) {
       const containerElement_ = $(containerElement);
       const linkElementHref = containerElement_.find("a[href^='/imgres']").attr('href');
-      const imageElementAlt = containerElement_.find('img').attr('alt');
-      const parsedLink = url.parse(linkElementHref, { parseQueryString: true });
-      const imageurl = parsedLink.query.imgurl;
-      const source = parsedLink.query.imgrefurl;
-      links.push({ url: imageurl, source, title: imageElementAlt });
+      if (linkElementHref) { // linkElementHref could be undefined
+        const imageElementAlt = containerElement_.find('img').attr('alt');
+        const parsedLink = url.parse(linkElementHref, { parseQueryString: true });
+        const imageurl = parsedLink.query.imgurl;
+        const source = parsedLink.query.imgrefurl;
+        links.push({ url: imageurl, source, title: imageElementAlt });
+      }
     });
 
     return links;
