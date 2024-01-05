@@ -200,7 +200,7 @@ class GoogleScraper {
       const linkElementHrefExpectedSelectors = ["a[href^='/imgres']", "a[jsaction]"];
       const linkElementHref = linkElementHrefExpectedSelectors
         .map(s => containerElement_.find(s).attr('href'))
-        .filter(e => e);
+        .find(e => e);
       if (linkElementHref) { // linkElementHref could be undefined
         const imageElementAlt = containerElement_.find('img').attr('alt');
         const parsedLink = url.parse(linkElementHref, { parseQueryString: true });
