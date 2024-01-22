@@ -112,9 +112,6 @@ class GoogleScraper {
     } else {
       results = await this._scrapePage(searchQuery, limit);
     }
-
-    await this._scrapePage(searchQuery, limit);
-
     await this.browser.close();
     return results;
   }
