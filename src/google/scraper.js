@@ -194,7 +194,7 @@ class GoogleScraper {
 
     $('#islrg div[jsaction][data-tbnid]').each(function (_i, containerElement) {
       const containerElement_ = $(containerElement);
-      const linkElementHrefExpectedSelectors = ["a[href^='/imgres']", 'a[jsaction]'];
+      const linkElementHrefExpectedSelectors = ["a[href*='/imgres']", 'a[jsaction]'];
       const linkElementHref = linkElementHrefExpectedSelectors
         .map((s) => containerElement_.find(s).attr('href'))
         .find((e) => e);
