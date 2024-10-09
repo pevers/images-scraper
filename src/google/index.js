@@ -103,7 +103,7 @@ class GoogleScraper {
       await page.setBypassCSP(true);
       await page.setUserAgent(this.userAgent);
       const queriesIsArray = Array.isArray(queries);
-      let imageUrlObject = {};
+      const imageUrlObject = {};
 
       /**
        * Used for DRY
