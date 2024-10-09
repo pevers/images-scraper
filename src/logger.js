@@ -1,9 +1,11 @@
 const winston = require('winston');
-
-const consoleTransport = new winston.transports.Console();
-
-const winstonOptions = {
-  level: process.env.LOG_LEVEL || 'info',
-  transports: [consoleTransport],
-};
-module.exports = new winston.createLogger(winstonOptions);
+module.exports = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.Console(),
+  ],
+});
