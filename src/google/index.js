@@ -1,8 +1,8 @@
 'use strict';
 
 const puppeteer = require('puppeteer');
-const fs = require("fs");
-const axios = require("axios");
+const fs = require('fs');
+const axios = require('axios');
 const path = require('path');
 const logger = require('../logger');
 
@@ -37,9 +37,9 @@ class GoogleScraper {
 
   /**
    * Method to download images based on query
-   * @param {string | string[]} queries 
-   * @param {number} limit 
-   * @param {string} directory 
+   * @param {string | string[]} queries
+   * @param {number} limit
+   * @param {string} directory
    * @returns {object}
    */
   async downloadImages(queries, limit = 5, directory = 'downloads') {
@@ -91,9 +91,9 @@ class GoogleScraper {
   }
 
   /**
-   * Method to get an object with image urls  
-   * @param {string | string[]} queries 
-   * @param {number} limit 
+   * Method to get an object with image urls
+   * @param {string | string[]} queries
+   * @param {number} limit
    * @returns {object}
    */
   async getImageUrl(queries, limit = 5) {
@@ -107,17 +107,19 @@ class GoogleScraper {
 
       /**
        * Used for DRY
-       * @param {string} query 
+       * @param {string} query
        */
       const getUrls = async (query) => {
-        const pageUrl = `https://www.google.com/search?${this.safe}&source=lnms&tbs=${this.tbs}&tbm=isch&q=${this._parseRequestQueries(query)}`;
+        const pageUrl = `https://www.google.com/search?${this.safe}&source=lnms&tbs=${
+          this.tbs
+        }&tbm=isch&q=${this._parseRequestQueries(query)}`;
         logger.debug(pageUrl);
         await page.goto(pageUrl);
 
         await page.evaluate(async () => {
           for (let i = 0; i < 10; i++) {
             window.scrollBy(0, window.innerHeight);
-            await new Promise(resolve => setTimeout(resolve, this.scrollDelay));
+            await new Promise((resolve) => setTimeout(resolve, this.scrollDelay));
           }
         });
 
@@ -126,13 +128,13 @@ class GoogleScraper {
         const images = await page.evaluate(() => {
           const imageElements = document.querySelectorAll('img');
           return Array.from(imageElements)
-            .map(img => img.src)
-            .filter(url => url.startsWith('http') && !url.includes('google'));
+            .map((img) => img.src)
+            .filter((url) => url.startsWith('http') && !url.includes('google'));
         });
 
         const queryKey = query.replace(/\s/g, '');
-        imageUrlObject[queryKey] = images.slice(0, limit).map(url => ({ query, url }));
-      }
+        imageUrlObject[queryKey] = images.slice(0, limit).map((url) => ({ query, url }));
+      };
 
       if (queriesIsArray) {
         for (const query of queries) {
@@ -144,7 +146,6 @@ class GoogleScraper {
 
       await browser.close();
       return imageUrlObject;
-
     } catch (err) {
       logger.error('An error occurred:', err);
     }
