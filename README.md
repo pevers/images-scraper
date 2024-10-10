@@ -1,5 +1,3 @@
-![Build Status](https://github.com/pevers/images-scraper/actions/workflows/ci.yaml/badge.svg)
-
 # images-scraper
 
 Simple NPM package to scrape Google images using Puppeteer. The headless browser will behave as a 'normal' user and scrolls to the bottom of the page until there are enough results.
