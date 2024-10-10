@@ -1,10 +1,10 @@
 'use strict';
 
-var Scraper = require('./google/scraper');
+const Scraper = require('./google');
 
-let google = new Scraper();
+const google = new Scraper();
 
 (async () => {
-  const results = await google.scrape('banana', 10); // Or ['banana', 'strawberry'] for multi-queries
+  const results = await google.downloadImages('cat', 10);
   console.log('results', results);
 })();
