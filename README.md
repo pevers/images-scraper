@@ -1,3 +1,5 @@
+**You can use it as a reference or inspiration but I will no longer update this repository**
+
 # images-scraper
 
 Simple NPM package to scrape Google images using Puppeteer. The headless browser will behave as a 'normal' user and scrolls to the bottom of the page until there are enough results.
